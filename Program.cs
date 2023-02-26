@@ -1,25 +1,53 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using OpenQA.Selenium.Chrome;
+using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
-Console.WriteLine("Hello, World!");
 
 string url = "https://spyderx.datacolor.com/shop-products/display-calibration/";
+string? token = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN");
 
 
 var document = new HtmlDocument();
 document.LoadHtml(GetHtmlString());
 
+
 float proPrice = ParseProPrice(document);
 float elitePrice = ParseElitePrice(document);
 
 var dt = DateTime.Now;
-Console.WriteLine(dt);
-Console.WriteLine(proPrice);
-Console.WriteLine(elitePrice);
+var sb = new StringBuilder();
+sb.AppendLine("🔥SpyderX🔥")
+    .AppendLine(DateTime.Now.Date.ToString())
+    .AppendLine()
+    .AppendLine($"SpyderX Pro = {proPrice}€")
+    .AppendLine($"SpyderX Elite = {elitePrice}€");
+Console.WriteLine(sb);
+TelegramBotClient? botClient = null;
+if (token!=null)
+{
+    botClient = new TelegramBotClient(token);
+}
+else
+{
+    Console.WriteLine("Token is invalid");
+    Environment.Exit(0);
+}
+
+
+await botClient.SendTextMessageAsync(
+    chatId: "@Kiribyte_channel",
+    text: sb.ToString(), 
+    replyMarkup: new InlineKeyboardMarkup(
+        InlineKeyboardButton.WithUrl(
+            text: "Check sendMessage method",
+            url: url)));
 
 
 string GetHtmlString()
