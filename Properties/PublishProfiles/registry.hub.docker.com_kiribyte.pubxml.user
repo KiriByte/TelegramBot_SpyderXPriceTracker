@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIgPG7MxTv066/ebQIdNu7AAAAAACAAAAAAAQZgAAAAEAACAAAACaHZSnXlDtpZethO2CdnI4A8afp0ij1RSh5OhkAFOhNQAAAAAOgAAAAAIAACAAAACvUFx2d/tGVgsGoYNH9JE09vSskqZI0PWJHDm63tgoECAAAABeFvSZz4w15AcFVgUMVYX19MF5hAWYEOEfHu9cksRnu0AAAAB6lb8UYzZcT3R11B7TwCvIYJCu2dhpIg1W1p//HMzMgvxytFVs/hxUcVI/ythT7laQlwDVszmYZ25ps2mdnGCk</EncryptedPassword>
-    <History>False|2023-02-26T19:46:51.6363246Z;False|2023-02-26T22:46:07.3456049+03:00;</History>
-    <LastFailureDetails>2023-02-26T19:46:51.6363246Z|checkContainerPrereq</LastFailureDetails>
+    <History>False|2023-02-26T19:59:47.3985242Z;False|2023-02-26T22:46:51.6363246+03:00;False|2023-02-26T22:46:07.3456049+03:00;</History>
+    <LastFailureDetails>2023-02-26T19:59:47.3985242Z|checkContainerPrereq</LastFailureDetails>
   </PropertyGroup>
 </Project>

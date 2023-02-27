@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
@@ -13,15 +12,12 @@ using Telegram.Bot.Types.ReplyMarkups;
 string url = "https://spyderx.datacolor.com/shop-products/display-calibration/";
 string? token = Environment.GetEnvironmentVariable("TELEGRAM_TOKEN");
 
-
 var document = new HtmlDocument();
 document.LoadHtml(GetHtmlString());
-
 
 float proPrice = ParseProPrice(document);
 float elitePrice = ParseElitePrice(document);
 
-var dt = DateTime.Now;
 var sb = new StringBuilder();
 sb.AppendLine("🔥SpyderX🔥")
     .AppendLine(DateTime.Now.Date.ToString())
@@ -29,8 +25,9 @@ sb.AppendLine("🔥SpyderX🔥")
     .AppendLine($"SpyderX Pro = {proPrice}€")
     .AppendLine($"SpyderX Elite = {elitePrice}€");
 Console.WriteLine(sb);
+
 TelegramBotClient? botClient = null;
-if (token!=null)
+if (token != "")
 {
     botClient = new TelegramBotClient(token);
 }
@@ -43,7 +40,7 @@ else
 
 await botClient.SendTextMessageAsync(
     chatId: "@Kiribyte_channel",
-    text: sb.ToString(), 
+    text: sb.ToString(),
     replyMarkup: new InlineKeyboardMarkup(
         InlineKeyboardButton.WithUrl(
             text: "Check sendMessage method",
@@ -53,7 +50,7 @@ await botClient.SendTextMessageAsync(
 string GetHtmlString()
 {
     var chromeOptions = new ChromeOptions();
-    chromeOptions.AddArgument("headless");
+    chromeOptions.AddArguments("--no-sandbox","headless");
     var driver = new ChromeDriver(chromeOptions);
     driver.Navigate().GoToUrl(url);
     string htmlString = driver.PageSource;
